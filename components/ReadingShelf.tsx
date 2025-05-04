@@ -172,7 +172,7 @@ const ReadingShelf = () => {
   );
   
   if (isLoading) return (
-    <div className="animate-pulse text-sm opacity-75">Loading Michelle's bookshelf...</div>
+    <div className="animate-pulse text-sm opacity-75">Loading Michelle&apos;s bookshelf...</div>
   );
   
   return (

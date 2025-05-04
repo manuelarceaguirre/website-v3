@@ -24,7 +24,7 @@ const RiveAnimation = ({ src, stateMachine, isActive, artboard }: RiveAnimationP
     if (isActive && isLoaded) {
       rive?.play();
     }
-  }, [isLoaded, isActive]);
+  }, [isLoaded, isActive, rive]);
 
   useEffect(() => {
     if (rive) {

@@ -13,6 +13,8 @@
 - [x] Replace Rive animations with image cards in section slides
 - [x] Redesign image cards to be smaller, tilted with interactive hover effects
 - [x] Optimize website performance for snappier interactions
+- [x] Fix build errors and optimize image processing with sharp
+- [x] Enable advanced CSS optimization with critters
 
 ## In Progress
 - [ ] Add appropriate images for each section card
