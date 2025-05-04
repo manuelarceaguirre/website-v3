@@ -16,6 +16,7 @@
 - [x] Fix build errors and optimize image processing with sharp
 - [x] Enable advanced CSS optimization with critters
 - [x] Configure website to always use light mode and remove theme toggle
+- [x] Fix missing book covers with custom fallback images
 
 ## In Progress
 - [ ] Add appropriate images for each section card

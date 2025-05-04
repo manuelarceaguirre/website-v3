@@ -38,7 +38,7 @@ const Book = ({
   
   // Use our image proxy directly - no fancy transformations
   const imageUrl = cover 
-    ? `/api/image-proxy?url=${encodeURIComponent(cover)}`
+    ? `/api/image-proxy?url=${encodeURIComponent(cover)}&title=${encodeURIComponent(title)}`
     : '';
   
   const bookContent = (
