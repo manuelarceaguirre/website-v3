@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
 import Image from "next/image";
 
 interface FooterProps {}
@@ -117,13 +116,6 @@ const Footer = ({}: FooterProps) => {
             </div>
           </div>
         </div>
-        <div className="col-span-4 md:mt-20 text-center md:items-start md:text-start md:-order-none order-first">
-          <h2 className="font-semibold mb-2">Theme</h2>
-          <div>
-            <ThemeToggle />
-          </div>
-        </div>
-
         <div className="col-span-4 md:mt-10 text-sm text-center md:text-start">
           <div className="text-whiteout/50">
             this site was inspired by{" "}

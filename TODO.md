@@ -15,12 +15,12 @@
 - [x] Optimize website performance for snappier interactions
 - [x] Fix build errors and optimize image processing with sharp
 - [x] Enable advanced CSS optimization with critters
+- [x] Configure website to always use light mode and remove theme toggle
 
 ## In Progress
 - [ ] Add appropriate images for each section card
 - [ ] Test Goodreads integration (currently reading only)
 - [ ] Verify responsive design of book shelf (currently reading only)
-- [ ] Make sure themes work properly (light/dark mode)
 
 ## To Do
 - [ ] Set environment variable NEXT_PUBLIC_SITE_URL in production
