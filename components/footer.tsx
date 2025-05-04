@@ -45,27 +45,7 @@ const Footer = ({}: FooterProps) => {
                 className="transition-opacity opacity-75 hover:opacity-100"
                 rel="noopener noreferrer"
                 target="_blank"
-                href="https://twitter.com/parzerp"
-              >
-                x.com
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://bsky.app/profile/philparzer.com"
-              >
-                Bluesky
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://linkedin.com/in/philipp-parzer"
+                href="https://www.linkedin.com/in/michelle-avalos-bar1031"
               >
                 LinkedIn
               </Link>
@@ -76,32 +56,11 @@ const Footer = ({}: FooterProps) => {
                 className="transition-opacity opacity-75 hover:opacity-100"
                 rel="noopener noreferrer"
                 target="_blank"
-                href="https://github.com/philparzer"
+                href="https://github.com/michelleavalosb"
               >
                 GitHub
               </Link>
             </li>
-            <li>
-              <Link
-                className="transition-opacity opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://discord.com/users/philguin"
-              >
-                Discord
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://twitch.tv/philguin"
-              >
-                Twitch
-              </Link>
-            </li>
-           
           </ul>
         </div>
         <div className="w-[200px] flex flex-col text-center md:items-start md:text-start">
@@ -112,7 +71,7 @@ const Footer = ({}: FooterProps) => {
                 className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
                 rel="noopener noreferrer"
                 target="_blank"
-                href="https://adlerlagune.com"
+                href="https://github.com/michelleavalosb/Threat-Hunting-Scripts"
               >
                 <div className="w-[20px] h-[20px] flex items-center justify-center">
                   <Image
@@ -123,130 +82,7 @@ const Footer = ({}: FooterProps) => {
                     height={19}
                   ></Image>
                 </div>
-                adlerlagune
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://0cred.com"
-              >
-                <div className="w-[20px] h-[20px] flex items-center justify-center">
-                  <Image
-                    alt="0cre"
-                    src="/logos/0cred.png"
-                    width={20}
-                    height={20}
-                  ></Image>
-                </div>
-                0cred
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://thesentproject.com"
-              >
-                <div className="w-[20px] h-[20px] flex items-center justify-center">
-                  <Image
-                    alt="thesentproject chat bubble logo"
-                    className=""
-                    src="/logos/tsp.png"
-                    width={19}
-                    height={19}
-                  ></Image>
-                </div>
-                thesentproject
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://undeaddomains.com"
-              >
-                <Image
-                  alt="undead domains"
-                  src="/logos/undead.png"
-                  width={20}
-                  height={20}
-                ></Image>
-                undead domains
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://buoy-productivity.com"
-              >
-                <Image
-                  alt="buoy"
-                  src="/logos/buoy.webp"
-                  width={20}
-                  height={20}
-                ></Image>
-                buoy
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://mypoca.com"
-              >
-                <div className="w-[20px] h-[20px] flex items-center justify-center">
-                  <Image
-                    alt="poca"
-                    className=""
-                    src="/logos/poca.gif"
-                    width={18}
-                    height={18}
-                  ></Image>
-                </div>
-                poca
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://jotlog.app"
-              >
-                <div className="w-[20px] h-[20px] flex items-center justify-center">
-                  <Image
-                    alt="jotlog"
-                    src="/logos/jotlog.png"
-                    width={16}
-                    height={16}
-                  ></Image>
-                </div>
-                jotlog
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
-                rel="noopener noreferrer"
-                target="_blank"
-                href="https://ampass.at"
-              >
-                <Image
-                  alt="ampass"
-                  src="/logos/ampass.png"
-                  width={20}
-                  height={20}
-                ></Image>
-                ampass
+                Threat Hunting Scripts
               </Link>
             </li>
           </ul>
@@ -258,16 +94,16 @@ const Footer = ({}: FooterProps) => {
             <div className=" font-light mt-2">
               <Link
                 className="opacity-50 transition-opacity hover:opacity-100"
-                href="mailto:parzerphilipp@gmail.com"
+                href="mailto:michelleavalosb@gmail.com"
               >
-                parzerphilipp@gmail.com
+                michelleavalosb@gmail.com
               </Link>
               <p>
                 <Link
                   className="opacity-50 transition-opacity hover:opacity-100"
-                  href="tel:+436605439322"
+                  href="tel:+17609686128"
                 >
-                  +436605439322
+                  +1 (760) 968-6128
                 </Link>
               </p>
               <div
@@ -275,8 +111,8 @@ const Footer = ({}: FooterProps) => {
                 className="opacity-50"
                 
               >
-                <p className="mt-2">Seitenstettengasse 5/37</p>
-                <p>1010, Vienna, Austria</p>
+                <p className="mt-2"></p>
+                <p></p>
               </div>
             </div>
           </div>
@@ -290,15 +126,15 @@ const Footer = ({}: FooterProps) => {
 
         <div className="col-span-4 md:mt-10 text-sm text-center md:text-start">
           <div className="text-whiteout/50">
-            this site is{" "}
+            this site was inspired by{" "}
             <Link
               className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
               href="https://github.com/philparzer/website-v3"
             >
-              open source
+              https://philippparzer.com/
             </Link>
             <p>
-              built with some of my favorite tools &mdash;{" "}
+              built with &mdash;{" "}
               <Link
                 className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
                 href="https://nextjs.org"
@@ -336,7 +172,7 @@ const Footer = ({}: FooterProps) => {
             <p className="text-whiteout/50 md:w-auto w-full">
               if you have questions or inquiries,{" "}
               <Link
-                href="mailto:hi@adlerlagune.com"
+                href="mailto:michelleavalosb@gmail.com"
                 className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
               >
                 reach out

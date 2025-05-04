@@ -1,28 +1,26 @@
 import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { useRef } from "react";
 import { useMotionValueEvent } from "framer-motion";
-import RiveAnimation from "./rive-animation";
+import ImageCard from "./image-card";
 
 interface ContentBoxProps {
   children?: React.ReactNode;
-  riveSource: string;
-  riveStateMachine: string;
+  imageSrc: string;
   index: number;
   activeIndex: number;
-  artboard: string;
   setActiveIndex: (index: number) => void;
   keywords?: string[];
+  imageAlt?: string;
 }
 
 const ContentBox = ({
   children,
-  riveSource,
-  riveStateMachine,
+  imageSrc,
   activeIndex,
   keywords,
   setActiveIndex,
   index,
-  artboard,
+  imageAlt = "Section image",
 }: ContentBoxProps) => {
   const ref = useRef(null);
 
@@ -42,7 +40,7 @@ const ContentBox = ({
     <motion.li
       key={index}
       ref={ref}
-      className={`transition-all relative   ${
+      className={`transition-all relative ${
         activeIndex !== index ? "blur-[1px] opacity-50" : ""
       }`}
     >
@@ -53,13 +51,13 @@ const ContentBox = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className={` z-0 relative`}
+            className={`z-0 relative`}
           >
-            <RiveAnimation
-              isActive={activeIndex === index}
-              stateMachine={riveStateMachine}
-              src={riveSource}
-              artboard={artboard}
+            <ImageCard
+              src={imageSrc}
+              index={index}
+              activeIndex={activeIndex}
+              alt={imageAlt}
             />
           </motion.div>
         )}
@@ -68,9 +66,9 @@ const ContentBox = ({
       <motion.div
         className={`w-full border relative z-10 ${
           activeIndex === index
-            ? "border-black/10 bg-zinc-50 dark:bg-whiteout/[0.025]  backdrop-blur-lg border-t dark:border-zinc-100/10"
+            ? "border-black/10 bg-zinc-50 dark:bg-whiteout/[0.025] backdrop-blur-lg border-t dark:border-zinc-100/10"
             : "dark:border-zinc-100/5 border-blackout/5"
-        }  ${index === 0 ? "" : "border-t-0"} p-[36px]`}
+        } ${index === 0 ? "" : "border-t-0"} p-[36px]`}
         style={activeIndex !== index ? undefined : { opacity: Math.max(scrollYProgress.get(), 0.5) }}
       >
         {children}
@@ -80,7 +78,7 @@ const ContentBox = ({
           ))}
         </ul>
       </motion.div>
-      <motion.div className="w-full h-[200px] border dark:border-zinc-100/5 border-blackout/5 border-t-0 " />
+      <motion.div className="w-full h-[200px] border dark:border-zinc-100/5 border-blackout/5 border-t-0" />
     </motion.li>
   );
 };

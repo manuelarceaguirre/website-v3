@@ -9,9 +9,9 @@ import { Analytics } from "@vercel/analytics/react"
 import ogImage from "./opengraph-image.png";
 
 export const metadata: Metadata = {
-  title: "Philipp Parzer",
-  description: "design engineering, and comms",
-  metadataBase: new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`),
+  title: "Michelle Avalos",
+  description: "Cybersecurity, Japanese, and more",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   openGraph: {
     images: [
       {
@@ -31,8 +31,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} relative 82d51828-c8fb-46bb-9edd-4d6a5378b4e4 font-sans bg-whiteout selection:text-white 24576e23-44f4-4174-a049-9a0ebd609e65 selection:bg-pink-400 dark:bg-zinc-900 text-blackout dark:text-zinc-100`}
+        className={`${GeistSans.variable} ${GeistMono.variable} relative font-sans bg-whiteout selection:text-white selection:bg-pink-400 dark:bg-zinc-900 text-blackout dark:text-zinc-100`}
       >
         <ThemeProvider attribute="class">
           <Nav/>
