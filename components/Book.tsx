@@ -33,13 +33,31 @@ const Book = ({
   link,
   tiltDirection = 'none' 
 }: BookProps) => {
+  console.log(`Book Component Render: Title="${title}", Cover URL="${cover}", Link="${link}"`);
+
   const [imageError, setImageError] = useState(false);
   const tiltAngle = tiltDirection === 'left' ? -2 : tiltDirection === 'right' ? 2 : 0;
   
-  // Use our image proxy directly - no fancy transformations
+  const isNoPhotoPlaceholder = cover && (
+    cover.includes('nophoto/book') || 
+    cover.includes('nophoto_') || 
+    cover.includes('nocover')
+  );
+  
   const imageUrl = cover 
-    ? `/api/image-proxy?url=${encodeURIComponent(cover)}&title=${encodeURIComponent(title)}`
+    ? `/api/image-proxy?url=${encodeURIComponent(cover)}&title=${encodeURIComponent(title)}&original=${encodeURIComponent(cover)}` + 
+      (link ? `&page=${encodeURIComponent(link)}` : '')
     : '';
+
+  console.log(`Book Component: Generated Image Proxy URL for "${title}": "${imageUrl}"`);
+  if (isNoPhotoPlaceholder) {
+      console.log(`Book Component: Detected nophoto placeholder for "${title}".`);
+  }
+
+  const handleImageError = () => {
+    console.error(`Book Component: Image failed to load for "${title}". URL: ${imageUrl}`);
+    setImageError(true);
+  }
   
   const bookContent = (
     <motion.div
@@ -52,13 +70,16 @@ const Book = ({
       }}
     >
       <div className="bg-whiteout dark:bg-zinc-800 overflow-hidden rounded-sm shadow-md aspect-[2/3] relative">
-        {cover && !imageError ? (
+        {cover && !imageError && !isNoPhotoPlaceholder ? (
           <Image
             src={imageUrl}
             alt={`Cover of ${title}`}
             fill
             className="object-cover"
-            onError={() => setImageError(true)}
+            onError={handleImageError}
+            priority={false}
+            loading="lazy"
+            sizes="(max-width: 768px) 30vw, 18vw"
           />
         ) : (
           <BookPlaceholder title={title} />

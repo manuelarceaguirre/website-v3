@@ -1,0 +1,2612 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+.env.example
+.eslintrc.json
+.gitignore
+app/api/book-cover/[...slug]/route.ts
+app/api/goodreads-img/route.ts
+app/api/goodreads/route.ts
+app/api/image-proxy/route.ts
+app/globals.css
+app/layout.tsx
+app/page.tsx
+app/tailwind/page.tsx
+CNAME
+components.json
+components/Book.tsx
+components/content-box.tsx
+components/footer.tsx
+components/hero-word.tsx
+components/image-card.tsx
+components/nav.tsx
+components/ReadingShelf.tsx
+components/rive-animation.tsx
+components/scroll-container.tsx
+components/theme-toggle.tsx
+components/titled-paragraph.tsx
+components/twitch-banner.tsx
+components/ui/popover.tsx
+globals.css
+lib/grLoader.ts
+lib/twitch-auth.tsx
+lib/use-favicon-animation.tsx
+lib/utils.ts
+next.config.mjs
+package.json
+postcss.config.js
+public/robots.txt
+README.md
+tailwind.config.ts
+TODO.md
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".env.example">
+TWITCH_ACCESS_TOKEN=
+TWITCH_CLIENT_SECRET=
+TWITCH_CLIENT_ID=
+</file>
+
+<file path=".eslintrc.json">
+{
+  "extends": "next/core-web-vitals"
+}
+</file>
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="app/api/book-cover/[...slug]/route.ts">
+import { NextRequest, NextResponse } from 'next/server';
+
+export const runtime = 'edge';
+
+// Simple placeholder image as base64 (very small grey book icon)
+const PLACEHOLDER_IMAGE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADLUlEQVR4nO2Zy0tVURTGf3p9ZL7SLDFITB+GD9AgzHCiVpYapYMGFTRoEgTRICgaNGjSpIn/QYMcNIggwogkCoeamtXN8lGiz4Gv4Dq2ts86Z92j94IXFtx7ztprffvsvdZe+0KJEiVKlJgMlAFrga/Ae2AWY4S5wGXgD6DHgUtAmTHAXOA20B8zk2PALFJEDfA6YQI9wBZSQgUwV7//BH4rbDdwjgLHReBYJN4JNOQzmTKgBbjtsNKAUNpGzuiwvUgWL4CaOPFmocclS4BmoDLSrhnYA7QK1aPAbqAmwXTqgctxE6gFLoq5XAfOAN+AV8AJ4CPwGHgEnHVM4h1Qr2gZFR3yhFqR0zHDRGeBHTnM5hywLY+JlAOvIvcui7y7Jzb7I+LdQJ2f/QR0ArMdEykDvkTs3xFZZdPcJ5dqjNj3BN4Ds4BXwrY/4dpcGxmntZ3HfZOPK7XtlDhDl6Q9vXa1GjqXJwY9HrgFbAXWKN5bJRa3qnVIjtOoXDqbM/IZ+AHcA64Cl41jLZJHHMfCUvRcHvPkQlhEZyZRHlH53WIfGC7t+6L/Lk1ir7JWrvSYgXYfzFHYuZbDuwxjdgVsU36T2KGiQ61Bj3kMXlT2yoR7D8MYXWh9OO0msfVKW7PJMHittC0yoXdPyFb/kI3lKU8DK6VJ7IiSz0/grdKPfSDVSeydC65I7U+gSgbeq3rlYQ49kr6SSVyVJrFFSj5f0zI/StQI88MXtvP+0QeI9YE+qfJoMGAr1T0MHEho+7T99hH7QI0MfFeZzyA+JfUFR+KPq3XR2g5d5tWG8aMPVC5H3n5DOw5sB04LG+aDBm1NkcM/lTQ2yk6iC/ig9NUEXJUFUplHPhgJ7ZKHejBSjjQMegZ44jngaOlRrqrKIw/MHMsBPwJXJP/PGMXfRv+pafcVCfpGU+SHU8q/J41jRkLv9YHd0qKGUdqMFRrEPO7x3Iaw2IXF8ZsRZnvFEWBZnnlgiST+4UaWBNI6v78kWaLhcP4ub65LhkH1VaQyP84FDgYogTcDx0gJs4FtZD9rDEpNtJm/+lOiRIkSJRjX+AvL+6QU+Mu31wAAAABJRU5ErkJggg==';
+
+export async function GET(request: NextRequest, { params }: { params: { slug: string[] } }) {
+  // Get image ID from slug
+  const slug = params.slug || [];
+  const imageId = slug.join('/');
+  
+  if (!imageId) {
+    return new Response(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" viewBox="0 0 100 150">
+        <rect width="100%" height="100%" fill="#f0f0f0"/>
+        <text x="50%" y="50%" font-family="Arial" font-size="12" fill="#999" text-anchor="middle">No image</text>
+      </svg>`,
+      {
+        headers: { 
+          'Content-Type': 'image/svg+xml',
+          'Cache-Control': 'public, max-age=86400' 
+        }
+      }
+    );
+  }
+  
+  // Full Goodreads image URL
+  const imageUrl = decodeURIComponent(imageId);
+  console.log('Trying to fetch:', imageUrl);
+  
+  try {
+    // Make the fetch with necessary headers to bypass Goodreads protection
+    const response = await fetch(imageUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': 'https://www.goodreads.com/',
+        'Origin': 'https://www.goodreads.com',
+        'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+      },
+      cache: 'force-cache'
+    });
+    
+    if (!response.ok) {
+      console.error(`Image fetch failed: ${response.status} ${response.statusText}`);
+      
+      // Return a placeholder SVG for book
+      return new Response(
+        `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" viewBox="0 0 100 150">
+          <rect width="100%" height="100%" fill="#f0f0f0"/>
+          <rect x="10" y="10" width="80" height="130" fill="#e0e0e0" rx="2" ry="2"/>
+          <text x="50%" y="50%" font-family="Arial" font-size="12" fill="#999" text-anchor="middle">${imageId.split('/').pop()?.split('.')[0] || 'Book'}</text>
+        </svg>`,
+        {
+          headers: { 
+            'Content-Type': 'image/svg+xml',
+            'Cache-Control': 'public, max-age=86400',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    }
+    
+    // Get the response data
+    const imageData = await response.arrayBuffer();
+    const contentType = response.headers.get('Content-Type') || 'image/jpeg';
+    
+    // Return the image with proper headers
+    return new Response(imageData, {
+      headers: {
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=86400',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  } catch (error) {
+    console.error('Image proxy error:', error);
+    
+    // Return base64 placeholder image
+    return new Response(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="150" viewBox="0 0 100 150">
+        <rect width="100%" height="100%" fill="#f0f0f0"/>
+        <rect x="10" y="10" width="80" height="130" fill="#e0e0e0" rx="2" ry="2"/>
+        <text x="50%" y="75" font-family="Arial" font-size="10" fill="#999" text-anchor="middle">Error loading</text>
+        <text x="50%" y="90" font-family="Arial" font-size="10" fill="#999" text-anchor="middle">cover image</text>
+      </svg>`,
+      {
+        headers: { 
+          'Content-Type': 'image/svg+xml',
+          'Cache-Control': 'public, max-age=3600',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }
+    );
+  }
+}
+</file>
+
+<file path="app/api/goodreads-img/route.ts">
+import { NextRequest } from 'next/server';
+
+export const runtime = 'edge';               // Edge = fast + cheap CDN cache
+const GOODREADS_HOSTS = ['i.gr-assets.com', 'images.gr-assets.com', 's.gr-assets.com', 'www.goodreads.com'];
+const DEFAULT_COVER = "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png";
+
+export async function GET(req: NextRequest) {
+  // ?src=https://i.gr-assets.com/...
+  const url = req.nextUrl.searchParams.get('src');
+  if (!url) return new Response('src missing', { status: 400 });
+
+  try {
+    const target = new URL(url);
+    
+    // Allow our selected image hosts
+    if (!GOODREADS_HOSTS.includes(target.hostname)) {
+      console.log(`Forbidden host in image request: ${target.hostname}`);
+      // Return the default image instead of an error
+      return getDefaultCoverImage();
+    }
+
+    // Fetch with multiple user agents to improve success rate and bypass rate limiting
+    const headers = getRandomUserAgentHeaders();
+
+    const imgRes = await fetch(target.toString(), { headers });
+
+    // If we get a non-successful response, try the default cover
+    if (!imgRes.ok) {
+      console.log(`Failed to load image from ${target.toString()}: ${imgRes.status}`);
+      return getDefaultCoverImage();
+    }
+
+    // Copy bytes through, add long cache
+    return new Response(imgRes.body, {
+      status: 200,
+      headers: {
+        'Content-Type': imgRes.headers.get('Content-Type') ?? 'image/jpeg',
+        'Cache-Control': 'public, s-maxage=2592000, max-age=2592000', // 30 days
+        'Access-Control-Allow-Origin': '*'
+      },
+    });
+  } catch (err) {
+    console.error('Image proxy error:', err);
+    return getDefaultCoverImage();
+  }
+}
+
+// Helper function to get the default cover image
+async function getDefaultCoverImage() {
+  try {
+    const defaultImage = await fetch(DEFAULT_COVER, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': 'https://www.goodreads.com/',
+      }
+    });
+    
+    if (!defaultImage.ok) {
+      // If even the default fails, return an SVG
+      return getFallbackSvg();
+    }
+    
+    const imageData = await defaultImage.arrayBuffer();
+    
+    return new Response(imageData, {
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'public, s-maxage=2592000, max-age=2592000',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  } catch (error) {
+    return getFallbackSvg();
+  }
+}
+
+// Generate an SVG fallback for the absolute worst case
+function getFallbackSvg() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="225" viewBox="0 0 150 225">
+    <rect width="150" height="225" fill="#f0f0f0"/>
+    <rect x="15" y="15" width="120" height="195" fill="#e0e0e0" rx="2" ry="2"/>
+    <text x="75" y="112.5" font-family="Arial" font-size="12" fill="#999" text-anchor="middle">Book cover</text>
+  </svg>`;
+  
+  return new Response(svg, {
+    headers: { 
+      'Content-Type': 'image/svg+xml',
+      'Cache-Control': 'public, s-maxage=2592000, max-age=2592000',
+      'Access-Control-Allow-Origin': '*'
+    }
+  });
+}
+
+// Get random user agent headers to avoid rate limiting
+function getRandomUserAgentHeaders() {
+  const userAgents = [
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.76'
+  ];
+  
+  return {
+    'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)],
+    'Referer': 'https://www.goodreads.com/',
+    'Origin': 'https://www.goodreads.com',
+    'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+  };
+}
+</file>
+
+<file path="app/api/goodreads/route.ts">
+import { NextRequest, NextResponse } from 'next/server';
+
+// This is a placeholder until you install rss-parser
+// If you get a "Cannot find module 'rss-parser'" error, run:
+// npm install rss-parser
+
+export const runtime = 'edge';
+
+// Helper function to enhance Goodreads image URLs for higher quality
+function enhanceGoodreadsImageUrl(url: string): string {
+  if (!url) return url;
+
+  try {
+    // Ensure HTTPS
+    let enhancedUrl = url.startsWith('http:') ? url.replace('http:', 'https:') : url;
+
+    // Remove or replace size constraints for better quality
+    // Common patterns: ._SX<size>_, ._SY<size>_, ._SX<size>SY<size>_, etc.
+    enhancedUrl = enhancedUrl.replace(/\._(SX|SY|SS|QL|CR|AC|SR|RC)\d*?_/g, '_');
+    enhancedUrl = enhancedUrl.replace(/\/\d+x\d+\//g, '/'); // Remove size folders like /75x75/
+    enhancedUrl = enhancedUrl.replace(/\?.*$/g, ''); // Remove query parameters that might limit size
+
+    // Sometimes removing the parameters leaves trailing underscores
+    enhancedUrl = enhancedUrl.replace(/_\./g, '.');
+
+    return enhancedUrl;
+  } catch (e) {
+    console.error(`Failed to enhance URL: ${url}`, e);
+    return url; // Return original URL on error
+  }
+}
+
+export async function GET(request: NextRequest) {
+  try {
+    // Directly fetch the RSS feed with more robust headers
+    const response = await fetch('https://www.goodreads.com/user/updates_rss/135088892', {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      },
+      next: { revalidate: 21600 } // 6 hours cache
+    });
+    
+    if (!response.ok) {
+      console.error(`Failed to fetch RSS: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch RSS: ${response.status}`);
+    }
+    
+    const xmlText = await response.text();
+    
+    // Simple XML parsing (not ideal but works until you install rss-parser)
+    const currentlyReading = [];
+    const recentlyRead = [];
+    
+    // Extract book info using regex (temporary solution)
+    const itemRegex = /<item>[\s\S]*?<title>([\s\S]*?)<\/title>[\s\S]*?<link>([\s\S]*?)<\/link>[\s\S]*?<description>([\s\S]*?)<\/description>[\s\S]*?<pubDate>([\s\S]*?)<\/pubDate>[\s\S]*?<\/item>/g;
+    let match;
+    
+    while ((match = itemRegex.exec(xmlText)) !== null) {
+      const [_, title, link, description, pubDate] = match;
+      
+      // Try multiple image extraction patterns
+      let coverUrl = '';
+      
+      // Pattern 1: Standard img tag
+      const imgMatch = description.match(/<img.*?src="(.*?)".*?>/i);
+      if (imgMatch && imgMatch[1]) {
+        coverUrl = imgMatch[1];
+      }
+      
+      // Pattern 2: Sometimes images are in a different format with escaped quotes
+      if (!coverUrl) {
+        const altImgMatch = description.match(/src=\\"(.*?)\\"/i);
+        if (altImgMatch && altImgMatch[1]) {
+          coverUrl = altImgMatch[1].replace(/\\\//g, '/');
+        }
+      }
+      
+      // Pattern 3: Look for book cover URL pattern directly
+      if (!coverUrl) {
+        const directUrlMatch = description.match(/https?:\/\/i\.gr-assets\.com\/images\/\S+\.jpg/i);
+        if (directUrlMatch) {
+          coverUrl = directUrlMatch[0];
+        }
+      }
+      
+      // Enhance the extracted URL for better quality
+      const enhancedCoverUrl = enhanceGoodreadsImageUrl(coverUrl);
+
+      // Check for reading status
+      if (title.includes('is currently reading')) {
+        const titleMatch = title.match(/is currently reading\s+(.*?)(\s+by\s+|$)/i);
+        const bookTitle = titleMatch ? titleMatch[1] : '';
+        
+        const authorMatch = title.match(/by\s+([^(]+)/i);
+        const author = authorMatch ? authorMatch[1].trim() : undefined;
+        
+        // Try multiple progress extraction patterns
+        let progress = undefined;
+        
+        // Pattern 1: Standard format "page X of Y"
+        const progressMatch = description.match(/(page \d+ of \d+|\d+%)/i);
+        if (progressMatch) {
+          progress = progressMatch[1];
+        }
+        
+        // Pattern 2: Alternative format "X% done"
+        if (!progress) {
+          const altProgressMatch = description.match(/(\d+)% done/i);
+          if (altProgressMatch) {
+            progress = `${altProgressMatch[1]}%`;
+          }
+        }
+        
+        // Pattern 3: Absolute page number "on page X"
+        if (!progress) {
+          const pageMatch = description.match(/on page (\d+)/i);
+          if (pageMatch) {
+            progress = `page ${pageMatch[1]}`;
+          }
+        }
+        
+        currentlyReading.push({
+          cover: enhancedCoverUrl,
+          title: bookTitle,
+          author,
+          progress,
+          link
+        });
+      } else if (title.includes('rated')) {
+        const titleMatch = title.match(/rated\s+(.*?)(\s+by\s+|$)/i);
+        const bookTitle = titleMatch ? titleMatch[1] : '';
+        
+        const authorMatch = title.match(/by\s+([^(]+)/i);
+        const author = authorMatch ? authorMatch[1].trim() : undefined;
+        
+        // Multiple rating extraction patterns
+        let rating = undefined;
+        
+        // Pattern 1: Standard format "X of 5 stars"
+        const ratingMatch = title.match(/(\d+) of 5 stars/i);
+        if (ratingMatch) {
+          rating = parseInt(ratingMatch[1]);
+        }
+        
+        // Pattern 2: Simple stars format "★★★☆☆"
+        if (!rating) {
+          const starsMatch = description.match(/(★+)/);
+          if (starsMatch) {
+            rating = starsMatch[1].length;
+          }
+        }
+        
+        recentlyRead.push({
+          cover: enhancedCoverUrl,
+          title: bookTitle,
+          author,
+          rating,
+          link
+        });
+      }
+    }
+    
+    console.log("Successfully fetched Goodreads data:", { currentlyReading: currentlyReading.length, recentlyRead: recentlyRead.length });
+    
+    return NextResponse.json(
+      { currentlyReading, recentlyRead },
+      {
+        headers: {
+          'Cache-Control': 's-maxage=21600, stale-while-revalidate=86400'
+        }
+      }
+    );
+  } catch (error) {
+    console.error('Error fetching Goodreads data:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch Goodreads data' },
+      { status: 500 }
+    );
+  }
+}
+</file>
+
+<file path="CNAME">
+michelleavalos.my
+</file>
+
+<file path="components.json">
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "app/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": false,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
+}
+</file>
+
+<file path="components/hero-word.tsx">
+import { motion } from "framer-motion";
+
+interface HeroWordProps {
+  word: string;
+}
+
+const HeroWord = ({ word }: HeroWordProps) => {
+  return (
+    <motion.div
+      className={`absolute left-0 top-0  rounded-lg`}
+      key={`${word}`}
+      initial={{
+        x: -20,
+        y: -12,
+        rotate: 0,
+        opacity: 0,
+        scale: 0.95,
+      }}
+      animate={{
+        x: [-10, 6, 0],
+        y: [-6, 4, 0],
+        rotate: 0,
+        scale: 1,
+        opacity: [0, 1, 1, 1, 1],
+        transition: {
+          ease: "easeInOut",
+          delay: 0.24,
+          duration: 0.2,
+        },
+      }}
+      exit={{
+        x: 20,
+        y: -20,
+        rotate: -4,
+        opacity: 0,
+        scale: 0.95,
+        transition: {
+          ease: "easeInOut",
+          duration: 0.2,
+        },
+      }}
+    >
+      <div className="absolute origin-center h-full z-0 backdrop-blur-[2px] w-[110%] rounded-full"></div>
+      <div className="text-[20px] md:text-[30px] relative z-10">{word}</div>
+    </motion.div>
+  );
+};
+
+export default HeroWord;
+</file>
+
+<file path="components/image-card.tsx">
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+interface ImageCardProps {
+  src: string;
+  index: number;
+  activeIndex: number;
+  alt: string;
+}
+
+const ImageCard = ({ src, index, activeIndex, alt }: ImageCardProps) => {
+  // Calculate slight tilt based on index
+  const tiltAngle = index % 2 === 0 ? "3deg" : "-3deg";
+  
+  return (
+    <div className="absolute w-[360px] aspect-[125/101] md:w-[500px] right-0 md:right-auto">
+      <div className="absolute -top-[291px] overflow-hidden left-0 w-full h-full md:-top-[401px]">
+        <div className={`w-full absolute z-10 top-0 left-0 h-20 bg-gradient-to-b from-whiteout dark:from-zinc-900 to-transparent`} />
+        <div className={`h-full absolute z-10 top-0 w-4 md:w-20 right-[-5px] bg-gradient-to-l blur-[1px] from-whiteout dark:from-zinc-900 via-whiteout dark:via-zinc-900 to-transparent`} />
+        <div className={`w-4 md:w-20 absolute top-0 z-10 left-0 h-full bg-gradient-to-r blur-[1px] from-whiteout dark:from-zinc-900 via-whiteout dark:via-zinc-900 to-transparent`} />
+        
+        <motion.div 
+          className="top-0 left-0 w-full h-full md:translate-x-0 translate-x-14 pointer-events-none absolute"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ 
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.3 }
+          }}
+        >
+          <div className="relative flex items-center justify-center w-full h-full">
+            <motion.div 
+              className="relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] shadow-lg"
+              initial={{ rotate: 0 }}
+              animate={{ 
+                rotate: tiltAngle,
+                transition: { duration: 0.3 }
+              }}
+              whileHover={{ 
+                rotate: "0deg", 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover rounded-lg border-2 border-white/20 dark:border-black/20"
+                sizes="(max-width: 768px) 180px, 220px"
+                loading="eager"
+                priority={index < 2}
+              />
+              <div className="absolute inset-0 rounded-lg shadow-inner bg-gradient-to-tr from-black/10 to-transparent pointer-events-none" />
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default ImageCard;
+</file>
+
+<file path="globals.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F7F7F7;
+  --foreground: #080808;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.invert-filter {
+  filter: invert(1);
+}
+</file>
+
+<file path="lib/grLoader.ts">
+// Custom image loader for Goodreads book covers
+export default function grLoader({ src, width }: { src: string; width: number }) {
+  // Get the site URL, defaulting to localhost for development
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  
+  // Handle image optimization and resolution upgrades
+  let optimizedSrc = src;
+  
+  // Common Goodreads image patterns and their transformations
+  if (src) {
+    // Upgrade to high resolution version - handle various patterns
+    optimizedSrc = optimizedSrc
+      // Size upgrades for various patterns
+      .replace(/\._SX\d+_/g, `._SY475_`)
+      .replace(/\._SY\d+_/g, `._SY475_`)
+      .replace(/\._SX\d+SY\d+_/g, `._SY475_`)
+      .replace(/\._\d+_\d+_/g, `._SY475_`)
+      // Handle Amazon S3 image resizing format
+      .replace(/\/\w+\d+(-?\d+)?-?_QL\d+_/g, '/SY475_')
+      // Remove image quality parameters that might downscale
+      .replace(/_QL\d+_/g, '')
+      // Handle non-standard URLs
+      .replace(/\/(S|M|P)\//g, '/L/');
+  }
+  
+  // size parameter lets Next.js pick the right responsive width
+  const url = new URL('/api/goodreads-img', siteUrl);
+  url.searchParams.set('src', optimizedSrc);
+  return url.toString();
+}
+</file>
+
+<file path="lib/twitch-auth.tsx">
+import { AppTokenAuthProvider } from '@twurple/auth';
+
+const clientId = process.env.TWITCH_CLIENT_ID;
+const clientSecret = process.env.TWITCH_CLIENT_SECRET;
+
+if (!clientId || !clientSecret) {
+    throw new Error('Twitch client ID and secret are required');
+}
+
+const authProvider = new AppTokenAuthProvider(clientId, clientSecret);
+
+export default authProvider;
+</file>
+
+<file path="lib/use-favicon-animation.tsx">
+import { useEffect } from 'react';
+
+const faviconOpen = '/favicon.ico';
+const faviconClosed = '/favicon-closed.ico';
+
+export default function useFaviconAnimation() {
+  useEffect(() => {
+    let favicon = document.querySelector("link[rel*='icon']") as HTMLLinkElement;
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
+    }
+
+    let isOpen = true;
+
+    const toggleFavicon = () => {
+      favicon.href = isOpen ? faviconClosed : faviconOpen;
+      
+      if (isOpen) {
+        setTimeout(() => {
+          favicon.href = faviconOpen;
+        }, 200);
+      }
+
+
+      isOpen = !isOpen;
+    };
+
+   
+    const intervalId = setInterval(toggleFavicon, 2000);
+
+   
+    return () => clearInterval(intervalId);
+  }, []);
+
+}
+</file>
+
+<file path="lib/utils.ts">
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+</file>
+
+<file path="postcss.config.js">
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+</file>
+
+<file path="public/robots.txt">
+User-agent: *
+Disallow: 
+
+User-agent: *
+Disallow: /tailwind/
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="app/api/image-proxy/route.ts">
+import { NextRequest, NextResponse } from 'next/server';
+
+export const runtime = 'edge';
+
+const DEFAULT_BOOK_COVER = 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png';
+const FALLBACK_COVERS: Record<string, string> = {
+  'Never Let Me Go': 'https://images.squarespace-cdn.com/content/v1/55c4be0be4b0ba943d74a433/1554243372947-MZXRGIZJNPZVHC0QCLZL/Never+Let+Me+Go+-+Kazuo+Ishiguro.jpg',
+  'Queen of Shadows': 'https://m.media-amazon.com/images/I/61KS6-d9I9L._AC_UF1000,1000_QL80_.jpg',
+  'Norwegian Wood': 'https://m.media-amazon.com/images/I/71piKAdU7fL._AC_UF1000,1000_QL80_.jpg'
+};
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const imageUrl = searchParams.get('url');
+  const bookTitle = searchParams.get('title') || '';
+  
+  if (!imageUrl) {
+    return NextResponse.json({ error: 'No image URL provided' }, { status: 400 });
+  }
+  
+  try {
+    // First check if we have a manual fallback for this specific book
+    if (bookTitle && FALLBACK_COVERS[bookTitle]) {
+      const fallbackResponse = await fetch(FALLBACK_COVERS[bookTitle]);
+      if (fallbackResponse.ok) {
+        const imageData = await fallbackResponse.arrayBuffer();
+        const contentType = fallbackResponse.headers.get('Content-Type') || 'image/jpeg';
+        
+        return new NextResponse(imageData, {
+          headers: {
+            'Content-Type': contentType,
+            'Cache-Control': 'public, max-age=604800' // Cache for 7 days
+          }
+        });
+      }
+    }
+    
+    // If no fallback or fallback failed, try the original URL
+    const response = await fetch(imageUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': 'https://www.goodreads.com/',
+        'Origin': 'https://www.goodreads.com'
+      }
+    });
+    
+    if (!response.ok) {
+      // If the image can't be fetched, return the default image
+      const defaultImage = await fetch(DEFAULT_BOOK_COVER);
+      const imageData = await defaultImage.arrayBuffer();
+      
+      return new NextResponse(imageData, {
+        headers: {
+          'Content-Type': 'image/png',
+          'Cache-Control': 'public, max-age=604800' // Cache for 7 days
+        }
+      });
+    }
+    
+    const imageData = await response.arrayBuffer();
+    const contentType = response.headers.get('Content-Type') || 'image/jpeg';
+    
+    return new NextResponse(imageData, {
+      headers: {
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=86400' // Cache for 1 day
+      }
+    });
+  } catch (error) {
+    console.error('Error proxying image:', error);
+    
+    // In case of any error, serve the default book cover
+    try {
+      const defaultImage = await fetch(DEFAULT_BOOK_COVER);
+      const imageData = await defaultImage.arrayBuffer();
+      
+      return new NextResponse(imageData, {
+        headers: {
+          'Content-Type': 'image/png',
+          'Cache-Control': 'public, max-age=604800' // Cache for 7 days
+        }
+      });
+    } catch (fallbackError) {
+      return NextResponse.json({ error: 'Failed to fetch image' }, { status: 500 });
+    }
+  }
+}
+</file>
+
+<file path="components/Book.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+type BookProps = {
+  cover: string;
+  title: string;
+  author?: string;
+  progress?: string;
+  rating?: number;
+  link?: string;
+  tiltDirection?: 'left' | 'right' | 'none';
+};
+
+// Default SVG fallback for books without covers
+const BookPlaceholder = ({ title }: { title: string }) => (
+  <div className="absolute inset-0 flex items-center justify-center p-2 bg-gray-100 dark:bg-zinc-700">
+    <span className="text-xs text-zinc-700 dark:text-zinc-300 text-center line-clamp-4">
+      {title}
+    </span>
+  </div>
+);
+
+const Book = ({ 
+  cover, 
+  title, 
+  author, 
+  progress, 
+  rating,
+  link,
+  tiltDirection = 'none' 
+}: BookProps) => {
+  const [imageError, setImageError] = useState(false);
+  const tiltAngle = tiltDirection === 'left' ? -2 : tiltDirection === 'right' ? 2 : 0;
+  
+  // Use our image proxy directly - no fancy transformations
+  const imageUrl = cover 
+    ? `/api/image-proxy?url=${encodeURIComponent(cover)}&title=${encodeURIComponent(title)}`
+    : '';
+  
+  const bookContent = (
+    <motion.div
+      className="relative group"
+      whileHover={{
+        rotate: tiltAngle,
+        y: -3,
+        scale: 1.05,
+        transition: { type: "spring", stiffness: 300, damping: 20 }
+      }}
+    >
+      <div className="bg-whiteout dark:bg-zinc-800 overflow-hidden rounded-sm shadow-md aspect-[2/3] relative">
+        {cover && !imageError ? (
+          <Image
+            src={imageUrl}
+            alt={`Cover of ${title}`}
+            fill
+            className="object-cover"
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <BookPlaceholder title={title} />
+        )}
+        
+        {/* Progress overlay for currently reading books */}
+        {progress && (
+          <div className="absolute bottom-0 left-0 right-0 bg-blackout/70 dark:bg-zinc-900/80 text-whiteout py-0.5 px-1 text-[10px] text-center truncate">
+            {progress}
+          </div>
+        )}
+        
+        {/* Rating overlay for read books */}
+        {rating !== undefined && (
+          <div className="absolute top-0 right-0 bg-blackout/70 dark:bg-zinc-900/80 text-pink-400 px-1 py-0.5 text-[10px] rounded-bl-sm">
+            {Array.from({ length: rating }).map((_, i) => (
+              <span key={i}>★</span>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      {/* Tooltip */}
+      <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-blackout/80 dark:bg-zinc-800/90 text-whiteout p-1.5 rounded text-[10px] z-10 bottom-full left-1/2 transform -translate-x-1/2 mb-1 w-36 max-w-full text-center pointer-events-none">
+        <p className="font-medium truncate">{title}</p>
+        {author && <p className="text-whiteout/70 dark:text-zinc-300/70 text-[8px] mt-0.5 truncate">{author}</p>}
+      </div>
+    </motion.div>
+  );
+
+  return link ? (
+    <Link href={link} target="_blank" rel="noopener noreferrer">{bookContent}</Link>
+  ) : bookContent;
+};
+
+export default Book;
+</file>
+
+<file path="components/ReadingShelf.tsx">
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Book from "./Book";
+
+type BookData = {
+  cover: string;
+  title: string;
+  author?: string;
+  progress?: string;
+  rating?: number;
+  link?: string;
+};
+
+type GoodreadsData = {
+  currentlyReading: BookData[];
+  recentlyRead: BookData[];
+};
+
+const shelfVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const bookVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 20
+    }
+  }
+};
+
+const tiltDirections = ['left', 'right', 'none'] as const;
+
+// Sample books for testing when there are no books from Goodreads
+const sampleBooks: BookData[] = [
+  {
+    title: "The Sound and the Fury",
+    author: "William Faulkner",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1551974950l/10975._SY475_.jpg",
+    progress: "62%"
+  },
+  {
+    title: "Never Let Me Go",
+    author: "Kazuo Ishiguro",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1353048590l/6334.jpg",
+    progress: "page 87 of 288"
+  },
+  {
+    title: "Norwegian Wood",
+    author: "Haruki Murakami",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1699682395l/11297._SY475_.jpg",
+    progress: "33%"
+  }
+];
+
+const sampleFinished: BookData[] = [
+  {
+    title: "Kafka on the Shore",
+    author: "Haruki Murakami",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1429638085l/4929.jpg",
+    rating: 5
+  },
+  {
+    title: "The Remains of the Day",
+    author: "Kazuo Ishiguro",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327128714l/28921.jpg",
+    rating: 4
+  },
+  {
+    title: "As I Lay Dying",
+    author: "William Faulkner",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1451810741l/77013._SY475_.jpg",
+    rating: 5
+  },
+  {
+    title: "Wind/Pinball",
+    author: "Haruki Murakami",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1419853433l/22898819.jpg",
+    rating: 4
+  },
+  {
+    title: "The Buried Giant",
+    author: "Kazuo Ishiguro",
+    cover: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1407008458l/22522805.jpg",
+    rating: 3
+  }
+];
+
+const ReadingShelf = () => {
+  const [data, setData] = useState<GoodreadsData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // For alternating tilt directions
+  const [tiltMap, setTiltMap] = useState<Map<string, typeof tiltDirections[number]>>(new Map());
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Add cache-busting query parameter to avoid stale data
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/api/goodreads?_=${timestamp}`, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
+        
+        if (!response.ok) {
+          console.error(`Failed to fetch Goodreads data: ${response.status} ${response.statusText}`);
+          throw new Error('Failed to fetch Goodreads data');
+        }
+        
+        const goodreadsData = await response.json();
+        
+        // Log the received data to help with debugging
+        console.log("Received Goodreads data:", {
+          currentlyReadingCount: goodreadsData.currentlyReading?.length || 0,
+          recentlyReadCount: goodreadsData.recentlyRead?.length || 0
+        });
+        
+        // If we have no data or very little data, supplement with sample books
+        if (!goodreadsData.currentlyReading || goodreadsData.currentlyReading.length < 2) {
+          // Use the real book if it exists and add sample books
+          const realBooks = goodreadsData.currentlyReading || [];
+          goodreadsData.currentlyReading = [...realBooks, ...sampleBooks.slice(0, Math.min(3, 5 - realBooks.length))];
+        }
+        
+        if (!goodreadsData.recentlyRead || goodreadsData.recentlyRead.length < 3) {
+          // Use the real books if they exist and add sample books
+          const realBooks = goodreadsData.recentlyRead || [];
+          goodreadsData.recentlyRead = [...realBooks, ...sampleFinished.slice(0, Math.min(5, 5 - realBooks.length))];
+        }
+        
+        setData(goodreadsData);
+        
+        // Assign random tilt directions to books
+        const newTiltMap = new Map<string, typeof tiltDirections[number]>();
+        
+        [...goodreadsData.currentlyReading, ...goodreadsData.recentlyRead].forEach((book, index) => {
+          // Alternate tilt directions for a more natural bookshelf look
+          const tiltPattern = ['left', 'right', 'none', 'right', 'left'];
+          newTiltMap.set(book.title, tiltDirections[index % tiltDirections.length]);
+        });
+        
+        setTiltMap(newTiltMap);
+      } catch (err) {
+        console.error("Error in ReadingShelf component:", err);
+        
+        // When API fails, use sample data instead of showing error
+        const sampleData = {
+          currentlyReading: sampleBooks,
+          recentlyRead: sampleFinished
+        };
+        
+        setData(sampleData);
+        
+        // Assign tilt directions
+        const newTiltMap = new Map<string, typeof tiltDirections[number]>();
+        [...sampleBooks, ...sampleFinished].forEach((book, index) => {
+          const tiltPattern = ['left', 'right', 'none', 'right', 'left'];
+          newTiltMap.set(book.title, tiltDirections[index % tiltDirections.length]);
+        });
+        
+        setTiltMap(newTiltMap);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+  
+  if (error && !data) return (
+    <div className="text-red-500 text-sm opacity-75">{error}</div>
+  );
+  
+  if (isLoading) return (
+    <div className="animate-pulse text-sm opacity-75">Loading Michelle&apos;s bookshelf...</div>
+  );
+  
+  return (
+    <div className="w-full">
+      {data?.currentlyReading && data.currentlyReading.length > 0 && (
+        <div className="mb-6">
+          <h3 className="text-base font-medium mb-3 text-blackout dark:text-whiteout flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-pink-400">
+              <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
+            </svg>
+            Currently reading
+          </h3>
+          <motion.div 
+            className="grid grid-cols-3 md:grid-cols-5 gap-3" 
+            variants={shelfVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {data.currentlyReading.slice(0, 5).map((book, index) => (
+              <motion.div key={`${book.title}-${index}`} variants={bookVariants} className="w-full">
+                <Book 
+                  {...book} 
+                  tiltDirection={tiltMap.get(book.title) || 'none'} 
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ReadingShelf;
+</file>
+
+<file path="components/ui/popover.tsx">
+"use client"
+
+import * as React from "react"
+import * as PopoverPrimitive from "@radix-ui/react-popover"
+
+import { cn } from "@/lib/utils"
+
+const Popover = PopoverPrimitive.Root
+
+const PopoverTrigger = PopoverPrimitive.Trigger
+
+const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+>(({ className, align = "center", sideOffset = 12, alignOffset = 40, ...props }, ref) => (
+  <PopoverPrimitive.Portal>
+    <PopoverPrimitive.Content
+      ref={ref}
+      align={align}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 rounded-xl py-6 px-6 text-center text-blackout dark:text-whiteout  bg-white dark:bg-blackout text-popover-foreground outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className
+      )}
+      {...props}
+    />
+  </PopoverPrimitive.Portal>
+))
+PopoverContent.displayName = PopoverPrimitive.Content.displayName
+
+export { Popover, PopoverTrigger, PopoverContent }
+</file>
+
+<file path="next.config.mjs">
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: ['localhost'],  // For development
+    remotePatterns: [
+      // We still need these for the initial loading, before the proxy kicks in
+      { protocol: 'https', hostname: 'i.gr-assets.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.gr-assets.com', pathname: '/**' },
+      { protocol: 'https', hostname: 's.gr-assets.com', pathname: '/**' },
+    ]
+  },
+  env: {
+    // Set this for the image loader, with a default for development
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  },
+  // Performance optimizations
+  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion', 'lucide-react', '@uidotdev/usehooks'],
+  },
+};
+
+export default nextConfig;
+</file>
+
+<file path="components/theme-toggle.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+export default function ThemeToggle() {
+  // Since we're forcing light mode, just return null to hide the toggle
+  return null;
+}
+</file>
+
+<file path="components/titled-paragraph.tsx">
+import { type ReactNode } from "react";
+
+interface TitledParagraphProps {
+  title: string;
+  children: ReactNode;
+}
+
+const TitledParagraph = ({ title, children }: TitledParagraphProps) => {
+  return (
+    <div className="relative">
+      <div className="absolute  h-full -left-10 top-0 w-10 pointer-events-none">
+        <h2 className="-rotate-90 w-full  h-full flex items-center justify-center text-sm font-mono lowercase opacity-60 whitespace-nowrap">{title}</h2>
+      </div>
+      <div className="text-base sm:text-lg">{children}</div>
+    </div>
+  );
+};
+
+export default TitledParagraph;
+</file>
+
+<file path="TODO.md">
+# Michelle's Website TODO List
+
+## Completed
+- [x] Update website content with Michelle's personal information
+- [x] Change "Philipp" to "Michelle" throughout the site
+- [x] Update section headers and descriptions
+- [x] Add Goodreads integration in the "lost in pages" section
+- [x] Configure next.config.mjs to allow Goodreads images
+- [x] Implement improved Goodreads image proxy with edge runtime and caching
+- [x] Fix image loading issues and improve resolution for book covers
+- [x] Remove "Recently finished" books section
+- [x] Update profile picture/logo with improved appearance and responsive scaling
+- [x] Replace Rive animations with image cards in section slides
+- [x] Redesign image cards to be smaller, tilted with interactive hover effects
+- [x] Optimize website performance for snappier interactions
+- [x] Fix build errors and optimize image processing with sharp
+- [x] Enable advanced CSS optimization with critters
+- [x] Configure website to always use light mode and remove theme toggle
+- [x] Fix missing book covers with custom fallback images
+
+## In Progress
+- [ ] Add appropriate images for each section card
+- [ ] Test Goodreads integration (currently reading only)
+- [ ] Verify responsive design of book shelf (currently reading only)
+
+## To Do
+- [ ] Set environment variable NEXT_PUBLIC_SITE_URL in production
+- [ ] Add additional content or sections if needed
+- [ ] Verify all links in navigation are updated
+- [ ] Test on different devices/browsers
+- [ ] Deploy to a hosting platform
+- [ ] Set up custom domain if desired
+
+## Future Enhancements
+- [ ] Add more interactive elements
+- [ ] Integrate additional APIs (e.g., Spotify for music, GitHub for code projects)
+- [ ] Create a blog section
+- [ ] Add more detailed about page
+</file>
+
+<file path="README.md">
+# Happy Birthday Michelle! 
+> Your boyfriend loves you
+</file>
+
+<file path="tailwind.config.ts">
+import type { Config } from "tailwindcss";
+
+const config = {
+  darkMode: ["selector"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        whiteout: "#F7F7F7",
+        blackout: "#080808",
+      },
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "minimal-pulse": {
+          "0%, 100%": { opacity: "1", scale: "1.01" },
+          "50%": { opacity: "0.9", scale: "1" },
+        }, 
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "minimal-pulse": "minimal-pulse 2s ease-in-out infinite",
+        "slide-in-from-top": "slide-in-from-top 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+
+export default config;
+</file>
+
+<file path="app/globals.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</file>
+
+<file path="app/page.tsx">
+import ScrollContainer from "@/components/scroll-container";
+
+export default async function Home() {
+
+  return (
+    <>
+      <ScrollContainer />
+    </>
+  );
+}
+</file>
+
+<file path="components/twitch-banner.tsx">
+import Link from "next/link";
+import authProvider from "@/lib/twitch-auth";
+import { ApiClient } from "@twurple/api";
+import moment from "moment-timezone";
+
+const TwitchBanner = async () => {
+
+  const twitchApi = new ApiClient({ authProvider });
+
+  const { data: schedule } = await twitchApi.schedule.getSchedule("63996301");
+  const stream = await twitchApi.streams.getStreamByUserId("63996301");
+
+  const now = moment.utc().tz("Europe/Luxembourg");
+
+  if (stream) {
+    return (
+      <Link
+        href="https://twitch.tv/philguin"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative pointer-events-auto transition-all animate-in slide-in-from-top-36"
+      >
+        <div className="px-3 text-xs sm:text-base py-1 flex dark:hover:ring-red-600 dark:ring-red-600/50 ring-red-500/50 hover:ring-red-500 transition-colors animate-minimal-pulse ring-2 ring-offset-2 items-center gap-2 dark:bg-red-600 bg-red-500 text-white rounded-md sm:font-semibold ">
+          <span>
+            <span className="text-white/75">Live on</span>{" "}
+            <span className="sm:font-semibold font-medium">Twitch</span>
+          </span>
+        </div>
+      </Link>
+    );
+  }
+
+  if (
+    schedule.segments.some((segment) => {
+      const segmentStart = moment.utc(segment.startDate).tz("Europe/Luxembourg");
+      return (
+        segmentStart.hours() <= now.hours() && // Check if the stream should have started
+        segmentStart.date() === now.date() // Check if it's the same day
+      );
+    })
+  ) {
+    return (
+      <div className="text-xs sm:text-sm pointer-events-auto">
+        <div className="">
+          should be live on{" "}
+          <Link href="https://twitch.tv/philguin">Twitch</Link> rn
+        </div>
+        <div className="flex gap-4">
+          <div className="gap-2 flex items-center">
+            lazy <span className="font-bold text-sm">{" :I"}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+export default TwitchBanner;
+</file>
+
+<file path="components/rive-animation.tsx">
+"use client";
+
+import { useRive } from "@rive-app/react-canvas";
+import { useEffect, useState } from "react";
+
+interface RiveAnimationProps {
+  src: string;
+  stateMachine: string;
+  isActive?: boolean;
+  artboard: string;
+}
+
+const RiveAnimation = ({ src, stateMachine, isActive, artboard }: RiveAnimationProps) => {
+  const { rive, RiveComponent } = useRive({
+    src: src,
+    stateMachines: stateMachine,
+    autoplay: false,
+    artboard: artboard,
+  });
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (isActive && isLoaded) {
+      rive?.play();
+    }
+  }, [isLoaded, isActive, rive]);
+
+  useEffect(() => {
+    if (rive) {
+
+      setIsLoaded(true);
+    }
+  }, [rive]);
+
+  return (
+   
+    <div className="absolute  w-[360px] aspect-[125/101] md:w-[500px] right-0 md:right-auto">
+      <div className="absolute -top-[291px] overflow-hidden left-0 w-full h-full md:-top-[401px]">
+      <div className={`w-full absolute z-10 top-0  left-0 h-20 bg-gradient-to-b from-whiteout dark:from-zinc-900 to-transparent`} />
+      <div className={`h-full absolute z-10 top-0 w-4 md:w-20 right-[-5px] bg-gradient-to-l blur-[1px] from-whiteout dark:from-zinc-900 via-whiteout dark:via-zinc-900 to-transparent`}/>
+      <div className={`w-4 md:w-20  absolute top-0 z-10 left-0 h-full bg-gradient-to-r blur-[1px] from-whiteout dark:from-zinc-900 via-whiteout dark:via-zinc-900 to-transparent`}/>
+      <RiveComponent className="invert-filter top-0 left-0 w-full h-full md:translate-x-0 translate-x-14 pointer-events-none absolute" />
+      </div>
+    </div>
+    
+  );
+};
+
+export default RiveAnimation;
+</file>
+
+<file path="app/tailwind/page.tsx">
+"use client";
+
+import TitledParagraph from "@/components/titled-paragraph";
+import Link from "next/link";
+import { useState } from "react";
+import { ExternalLink } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+
+interface PageProps {}
+
+const Page = ({}: PageProps) => {
+  const [isTLDRShown, setIsTLDRShown] = useState(false);
+  const [isHoveringOverTrud, setIsHoveringOverTrud] = useState(false);
+  const [isHoveringOverVolya, setIsHoveringOverVolya] = useState(false);
+
+  return (
+    <main className="flex my-[140px] sm:my-[200px] justify-end sm:justify-center">
+      <section className="max-w-[626px] pl-9 pr-6 sm:pl-0 sm:pr-0 sm:px-10">
+        <h2 className="font-mono uppercase text-sm font-semibold opacity-25">
+          application
+        </h2>
+        <h1 className="flex items-baseline flex-wrap sm:gap-3 my-2 sm:my-4 text-3xl sm:text-[32px] font-semibold">
+          <span className="sm:w-auto w-full">Design Engineer</span>
+          <span className="opacity-50 w-full sm:w-auto text-[18px] sm:text-[22px]">Tailwind Labs</span>
+        </h1>
+        <button
+          onClick={() => {
+            setIsTLDRShown(!isTLDRShown);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="text-base sm:sticky mt-6 sm:mt-0 sm:top-9 z-10 bg-white dark:bg-blackout border dark:border-whiteout/50 rounded-md px-2 py-0.5 border-blackout"
+        >
+          {!isTLDRShown
+            ? "Too much text? show TLDR"
+            : "More details? show everything"}
+        </button>
+
+        <div className="flex flex-col gap-6 sm:gap-8 mt-10 text-blackout/90 dark:text-whiteout/90">
+          {isTLDRShown ? (
+            <TitledParagraph title="TLDR">
+              <div className="flex flex-col gap-2 sm:gap-3">
+                <p>
+                  I’m Phil, a freelance fullstack dev based in Vienna, Austria
+                  UTC+1.
+                </p>
+                <p>
+                  I design in Figma and Blender, know how to animate 2D
+                  + 3D and use TailwindCSS with NextJS and Typescript for all my
+                  frontend needs.
+                </p>
+                <p>Some projects you can check out:{" "}
+                {" "}
+                  <Link
+                    href="https://mypoca.com"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    poca
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>{" "} (social media x page builder), {" "}
+                  <Link
+                    href="https://adlerlagune.com"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    adlerlagune
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>{" "} (my company/agency), {" "}
+                  <Link
+                    href="https://buoy-productivity.com"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    buoy
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>{" "} (macOS productivity app), {" "}
+                  <Link
+                    href="https://jotlog.app"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    jotlog
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>{" "} (react native note-taking app) </p>
+                <p>
+                  I grew up bilingually (English, German) and picked up Russian
+                  along the way. I&apos;m a very outgoing and talkative person.
+                </p>
+                <p>
+                  The posting got me really excited. Working for Tailwind Labs,
+                  I’d love to build out landing pages or components like the
+                  ones you mentioned in the job posting, maybe help you with
+                  docs for 4.0? as I love to explain stuff or just tackle any
+                  task you throw at me!
+                </p>
+              </div>
+            </TitledParagraph>
+          ) :(
+            <>
+              
+              
+            
+              <TitledParagraph title="what I do">
+                <p>Hi, I&apos;m Phil! I’m based in Vienna, Austria (UTC+1), working as a
+                  freelance fullstack engineer. I founded my own company{" "}
+                  <Link
+                    href="https://adlerlagune.com"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    adlerlagune
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>{" "}
+                  in December and have tackled several client
+                  projects since. Software isn&apos;t the only thing I offer: I also do 3D design and animation using primarily
+                  Blender and 2D design and motion graphics using the Adobe
+                  Suite and Rive / Figma. In addition, I work closely with
+                  Austrian software development and marketing agencies as a
+                  part-time CTO / lead-dev. There, I help them build out
+                  projects, prototype infrastructure, and jump in when shit hits
+                  the fan.
+                </p>
+              </TitledParagraph>
+              <TitledParagraph title="(side) projects">
+                <div className="flex flex-col gap-5">
+                <p>
+                  I&apos;m addicted to side projects. My most recent completed
+                  project is{" "}
+                  <span className="whitespace-nowrap">
+                  <Link
+                    href="https://mypoca.com"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    poca
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>:{" "}
+                  </span> social media meets page builder. Rn, I&apos;m working on{" "}
+                  <span
+                    onPointerEnter={() => setIsHoveringOverTrud(true)}
+                    onPointerLeave={() => setIsHoveringOverTrud(false)}
+                    className="relative inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    <span className="whitespace-nowrap">
+                    <AnimatePresence>
+                      {isHoveringOverTrud && (
+                        <motion.span
+                          initial={{ scale: 0, rotate: 12 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          exit={{ scale: 0, rotate: 12 }}
+                          className="absolute -top-10 -right-[160px] w-[200px]"
+                        >
+                            <span className="font-normal text-base pl-1 absolute">not live yet</span>
+                          <Image
+                            src="/other/trud.png"
+                            alt="trud side project"
+                            width={608}
+                            height={464}
+                          />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                    trud
+                  </span>
+                  :</span> certificates for everything human and  <span
+                    onPointerEnter={() => setIsHoveringOverVolya(true)}
+                    onPointerLeave={() => setIsHoveringOverVolya(false)}
+                    className="relative inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    <AnimatePresence>
+                      {isHoveringOverVolya && (
+                        <motion.span
+                          initial={{ scale: 0, rotate: 12 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          exit={{ scale: 0, rotate: 12 }}
+                          className="absolute -top-10 -right-[160px] w-[200px]"
+                        >
+                            <span className="font-normal text-base pl-1 absolute text-whiteout">not live yet</span>
+                          <Image
+                            src="/other/volya.png"
+                            alt="trud side project"
+                            width={608}
+                            height={464}
+                          />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                    volya
+                  </span>: a roguelike game built with godot. Another recent project I&apos;m proud of is {" "}  <Link
+                    href="https://jotlog.app"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    jotlog
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>:{" "} a blazingly fast, always offline note taking app built with expo react native and nativewind. A few weeks ago I wrapped up a project I started as an electron app years ago—<Link
+                    href="https://buoy-productivity.com"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    buoy
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>:{" "} a productivity tracker that reminds you to stay in specific apps and alerts you as soon as you lose focus. I ditched Electron for native SwiftUI/UIKit. <br/>
+                  
+                </p>
+                <p>
+                With each side project I try to force myself to pick at
+                  least one new tech or framework.
+                  I don&apos;t really get the
+                  sentiment of &quot;too many decisions&quot; when it comes to webdev.
+                  Without iteration, there&apos;s no progress. A new JS framework a
+                  day is a good thing.
+                </p>
+                </div>
+              </TitledParagraph>
+              <TitledParagraph title="teamplay">
+                <p>
+                  Although I feel like I’m fastest when I work solo, I have
+                  plenty of experience working in small to medium sized teams in
+                  agile and non-agile environments. I know how to explain
+                  technical details to non-tech stakeholders, know how to
+                  navigate design hand-offs, and other critical situations.
+                  An example of me explaining technical concepts to people unfamiliar is {" "}
+                  <Link
+                    href="https://badfile.zip"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                    badfile.zip
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>:{" "} a site I built back when Google launched .zip TLDs. Another example would be some of my {" "}
+                  <Link
+                    href="https://www.linkedin.com/feed/update/urn:li:activity:7168931115532034048/"
+                    target="_blank"
+                    className="underline inline-flex dark:text-whiteout/100 gap-1 items-center font-semibold text-blackout/100"
+                  >
+                   LinkedIn posts
+                    <ExternalLink strokeWidth={3} width={20} />
+                  </Link>{" "} where I try to add value to the community by explaining complex topics in a simple way.
+                 
+                </p>
+              </TitledParagraph>
+              <TitledParagraph title="comms">
+                <p>
+                  I’m a very outgoing and talkative person that often comes
+                  across as non-tech at first. I know my way around non-tech as
+                  well as tech people and enjoy bridging the gap. I grew up
+                  bilingually (English C2, German C2) and picked up Russian (B2)
+                  along the way.
+                </p>
+              </TitledParagraph>
+              
+              <TitledParagraph title="this job">
+                <p>
+                  Honestly, I&apos;ve never been as excited about a job posting.
+                  Working for Tailwind Labs, a company whose product I use
+                  literally every day and that&apos;s transformed my professional
+                  life would be nothing short of amazing. If I get the chance,
+                  I&apos;d love to build out landing pages like the ones you
+                  mentioned in the job posting, maybe help you with docs for
+                  4.0? as I love to explain stuff or just tackle any task you
+                  throw at me!
+                </p>
+              </TitledParagraph>
+              <hr className="border-blackout dark:border-whiteout opacity-25" />
+
+            <h2 className="font-semibold text-2xl">Personal lore :) / About me</h2>
+
+              <TitledParagraph title="About">
+                <p>I&apos;ve always had a thing for design, but
+                  somewhere in my teens, I realized that traditional drawing, 3D
+                  and 2D design just didn&apos;t cut it for me anymore. I needed
+                  something more. Building actual things with code was the
+                  answer.
+                </p>
+              </TitledParagraph>
+              <TitledParagraph title="journey">
+                <p>
+                  My adventure began with C# and Unity, and from there, it was a
+                  bit of a rollercoaster—I dabbled in embedded, and Swift,
+                  improving my understanding of low-level programming, then got
+                  my hands dirty exploring the endless possibilities of Rust and
+                  Python during my uni days, and eventually made my way to JS,
+                  TS, and CSS.
+                </p>
+              </TitledParagraph>
+              <TitledParagraph title="webdev">
+                <p>
+                  Web development, and CSS specifically, seemed rough at first
+                  but I immediately fell in love with the endless possibilities
+                  and ways you can go off the beaten path easily. I had finally
+                  found a platform that let me design stuff, and share it with
+                  anyone, anywhere, instantly. I&apos;ve been working professionally
+                  in webdev for 5 years now and plan on doing so for a long
+                  time. Web always wins.
+                </p>
+              </TitledParagraph>
+              <hr className="border-blackout dark:border-whiteout opacity-25" />
+              <h2 className="font-semibold text-2xl">A Love letter to Tailwind</h2>
+              <TitledParagraph title="tailwind 1">
+                <p>
+                  I have a pretty vivid memory of my first encounter with
+                  Tailwind in the wild. Similar to Typescript I was a bit
+                  cautious at first. But after trying it once, I’ve used it every chance I got, and never looked
+                  back. All the context switching—gone. Fighting over
+                  classnames and dreading redesigns when working in teams—gone. Struggling with weird CSS quirks—way less.
+                </p>
+              </TitledParagraph>
+              <TitledParagraph title="tailwind 2">
+                <p>
+                  But one thing about Tailwind is even bigger for me,
+                  personally: I love to build solo, fast. What Tailwind has
+                  enabled me to do was to design in code. Usually, I sketch out
+                  a first prototype of the design in Figma, but move to code
+                  pretty early-on and what happens is, I refine the design
+                  in-code. I&apos;ve tried many CSS frameworks but only Tailwind
+                  allowed me to enter this very specific design-code flow state.
+                </p>
+              </TitledParagraph>
+              <TitledParagraph title="tailwind 3">
+                <p>
+                  Tailwind has also upped my CSS game in general. Your guys&apos;
+                  docs are incredible at explaining all the different features,
+                  and I find myself checking them even if I&apos;m forced to use a
+                  different CSS framework. Beyond just using Tailwind in my own
+                  projects, I&apos;ve also had the pleasure of introducing it to devs
+                  I&apos;ve worked with. Many were skeptical or unsure at first, but
+                  through hands-on demonstrations they came around pretty
+                  quickly. Some of them have even become Tailwind enthusiasts
+                  themselves.
+                </p>
+              </TitledParagraph>
+             
+            </>
+            
+          )}
+          <p className="text-base sm:text-lg my-10 sm:my-20">
+            Thanks for reading this. Love your work, keep it up!
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default Page;
+</file>
+
+<file path="package.json">
+{
+  "name": "website-v3",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@rive-app/react-canvas": "^4.8.4",
+    "@twurple/api": "^7.1.0",
+    "@uidotdev/usehooks": "^2.4.1",
+    "@vercel/analytics": "^1.2.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "critters": "^0.0.23",
+    "framer-motion": "^11.18.2",
+    "geist": "^1.2.2",
+    "ical": "^0.8.0",
+    "lucide-react": "^0.363.0",
+    "moment-timezone": "^0.5.45",
+    "next": "14.1.4",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "rss-parser": "^3.13.0",
+    "sharp": "^0.34.1",
+    "swr": "^2.3.3",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/ical": "^0.8.3",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="components/nav.tsx">
+import Link from "next/link";
+import Image from "next/image";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import TwitchBanner from "./twitch-banner";
+import { Suspense } from "react";
+import ReadingShelf from "@/components/ReadingShelf";
+
+const Nav = () => {
+  return (
+    <>
+      <nav className="fixed pointer-events-none top-0 md:px-12 p-4 md:p-6 flex w-screen items-center justify-between z-50">
+        <svg
+          className="hidden md:block absolute right-0 top-0 -scale-x-100 z-50 "
+          width="53"
+          height="52"
+          viewBox="0 0 53 52"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="dark:fill-black fill-blackout"
+            d="M0 -5.35442e-05H52.1C52.1 -5.35442e-05 24.8947 -0.434101 12.4473 12.7519C2.67029e-05 25.938 0 51.8759 0 51.8759V-5.35442e-05Z"
+          />
+        </svg>
+
+        <svg
+          className="hidden md:block absolute left-0 top-0 z-50"
+          width="53"
+          height="52"
+          viewBox="0 0 53 52"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="dark:fill-black fill-blackout"
+            d="M0 -5.35442e-05H52.1C52.1 -5.35442e-05 24.8947 -0.434101 12.4473 12.7519C2.67029e-05 25.938 0 51.8759 0 51.8759V-5.35442e-05Z"
+          />
+        </svg>
+        <Link
+          href="/"
+          className="relative pointer-events-auto w-[54px] h-[54px] md:w-[64px] md:h-[64px] hover:scale-110 transition-transform duration-300"
+        >
+          <Image
+            priority
+            src="/logo-anim.gif"
+            fill
+            sizes="(max-width: 768px) 54px, 64px"
+            className="object-contain"
+            alt="Michelle's logo animation"
+          />
+        </Link>
+        {/* <Suspense fallback={null}>
+          <TwitchBanner />
+        </Suspense> */}
+        <Popover>
+          <PopoverTrigger
+            className={`pointer-events-auto underline underline-offset-[3px] opacity-100  decoration-[1.5px] decoration-blackout/50 dark:decoration-whiteout/50 md:mr-10 font-medium`}
+          >
+            contact
+          </PopoverTrigger>
+          <PopoverContent>
+            <ul className="flex pointer-events-auto font-medium flex-col gap-4 font-base">
+              <li>
+                <Link href="mailto:michelleavalosb@gmail.com">email</Link>
+              </li>
+              <li>
+                <Link href="tel:+17609686128">phone</Link>
+              </li>
+              <li>
+                <Link href="https://www.linkedin.com/in/michelle-avalos-bar1031">
+                  linkedin
+                </Link>
+              </li>
+              <li>
+                <Link href="https://github.com/michelleavalosb">github</Link>
+              </li>
+            </ul>
+          </PopoverContent>
+        </Popover>
+      </nav>
+    </>
+  );
+};
+
+export default Nav;
+</file>
+
+<file path="app/layout.tsx">
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import Footer from "@/components/footer";
+import Nav from "@/components/nav";
+import { Analytics } from "@vercel/analytics/react"
+import ogImage from "./opengraph-image.png";
+
+export const metadata: Metadata = {
+  title: "Michelle Avalos",
+  description: "Cybersecurity, Japanese, and more",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  openGraph: {
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height
+      },
+    ],
+  },
+};
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+
+  return (
+    <html lang="en" suppressHydrationWarning className="light">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body
+        className={`${GeistSans.variable} ${GeistMono.variable} relative font-sans bg-whiteout selection:text-white selection:bg-pink-400 text-blackout`}
+      >
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
+          <Nav/>
+          {children}
+          <Footer />
+        </ThemeProvider>
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+
+export const revalidate = 300;
+</file>
+
+<file path="components/content-box.tsx">
+import { AnimatePresence, motion, useScroll } from "framer-motion";
+import { useRef } from "react";
+import { useMotionValueEvent } from "framer-motion";
+import ImageCard from "./image-card";
+
+interface ContentBoxProps {
+  children?: React.ReactNode;
+  imageSrc: string;
+  index: number;
+  activeIndex: number;
+  setActiveIndex: (index: number) => void;
+  keywords?: string[];
+  imageAlt?: string;
+}
+
+const ContentBox = ({
+  children,
+  imageSrc,
+  activeIndex,
+  keywords,
+  setActiveIndex,
+  index,
+  imageAlt = "Section image",
+}: ContentBoxProps) => {
+  const ref = useRef(null);
+
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", `${index === 0 ? "0" : "-0.1"} center`], //at index 0 start is already above center -> no negative offset, or the text box is opaque by default
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > 0 && latest !== 1) {
+      setActiveIndex(index);
+    }
+  });
+
+  return (
+    <motion.li
+      key={index}
+      ref={ref}
+      className={`transition-all relative ${
+        activeIndex !== index ? "blur-[1px] opacity-50" : ""
+      }`}
+    >
+      <div className="relative z-0">
+      <AnimatePresence>
+        {activeIndex === index && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`z-0 relative`}
+          >
+            <ImageCard
+              src={imageSrc}
+              index={index}
+              activeIndex={activeIndex}
+              alt={imageAlt}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      </div>
+      <motion.div
+        className={`w-full border relative z-10 ${
+          activeIndex === index
+            ? "border-black/10 bg-zinc-50 dark:bg-whiteout/[0.025] backdrop-blur-lg border-t dark:border-zinc-100/10"
+            : "dark:border-zinc-100/5 border-blackout/5"
+        } ${index === 0 ? "" : "border-t-0"} p-[36px]`}
+        style={activeIndex !== index ? undefined : { opacity: Math.max(scrollYProgress.get(), 0.5) }}
+      >
+        {children}
+        <ul className="flex gap-8 text-sm dark:text-zinc-100/25 text-blackout/25 mt-4 font-mono">
+          {keywords?.map((keyword, i) => (
+            <li key={keyword + i}>{keyword}</li>
+          ))}
+        </ul>
+      </motion.div>
+      <motion.div className="w-full h-[200px] border dark:border-zinc-100/5 border-blackout/5 border-t-0" />
+    </motion.li>
+  );
+};
+
+export default ContentBox;
+</file>
+
+<file path="components/footer.tsx">
+import Link from "next/link";
+import Image from "next/image";
+
+interface FooterProps {}
+
+const Footer = ({}: FooterProps) => {
+  return (
+    <footer className="flex justify-center w-full flex-col items-center ">
+      <div className="fixed bottom-0 w-full z-50">
+        <svg
+          className="hidden md:block absolute bottom-0 right-0 rotate-180 z-50 md:absolute "
+          width="53"
+          height="52"
+          viewBox="0 0 53 52"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="dark:fill-black fill-blackout"
+            d="M0 -5.35442e-05H52.1C52.1 -5.35442e-05 24.8947 -0.434101 12.4473 12.7519C2.67029e-05 25.938 0 51.8759 0 51.8759V-5.35442e-05Z"
+          />
+        </svg>
+
+        <svg
+          className="hidden md:block absolute left-0 bottom-0 -scale-x-100 rotate-180 z-50"
+          width="53"
+          height="52"
+          viewBox="0 0 53 52"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="dark:fill-black fill-blackout"
+            d="M0 -5.35442e-05H52.1C52.1 -5.35442e-05 24.8947 -0.434101 12.4473 12.7519C2.67029e-05 25.938 0 51.8759 0 51.8759V-5.35442e-05Z"
+          />
+        </svg>
+      </div>
+      <div className="bg-blackout p-20 pb-10 rounded-2xl mb-4 md:mb-20 text-whiteout flex flex-col gap-20 md:gap-0 items-center md:items-start md:grid md:grid-cols-4">
+        <div className="w-[200px] flex flex-col items-center text-center md:items-start md:text-start">
+          <h2 className="text-lg font-semibold">Find me on</h2>
+          <ul className="font-light gap-1 flex flex-col mt-2">
+          <li>
+              <Link
+                className="transition-opacity opacity-75 hover:opacity-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.linkedin.com/in/michelle-avalos-bar1031"
+              >
+                LinkedIn
+              </Link>
+            </li>
+           
+            <li>
+              <Link
+                className="transition-opacity opacity-75 hover:opacity-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://github.com/michelleavalosb"
+              >
+                GitHub
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="w-[200px] flex flex-col text-center md:items-start md:text-start">
+          <h2 className="text-lg font-semibold">Some of my work</h2>
+          <ul className="font-light gap-1 flex flex-col items-center md:items-start mt-2">
+            <li>
+              <Link
+                className="transition-opacity flex items-center gap-2 opacity-75 hover:opacity-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://github.com/michelleavalosb/Threat-Hunting-Scripts"
+              >
+                <div className="w-[20px] h-[20px] flex items-center justify-center">
+                  <Image
+                    alt="adlerlagune"
+                    className=""
+                    src="/logos/adlerlagune.png"
+                    width={19}
+                    height={19}
+                  ></Image>
+                </div>
+                Threat Hunting Scripts
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="col-span-2 flex justify-end text-center md:items-start md:text-start">
+          <div className="flex flex-col">
+            <h2 className="text-lg font-semibold">Contact</h2>
+            <div className=" font-light mt-2">
+              <Link
+                className="opacity-50 transition-opacity hover:opacity-100"
+                href="mailto:michelleavalosb@gmail.com"
+              >
+                michelleavalosb@gmail.com
+              </Link>
+              <p>
+                <Link
+                  className="opacity-50 transition-opacity hover:opacity-100"
+                  href="tel:+17609686128"
+                >
+                  +1 (760) 968-6128
+                </Link>
+              </p>
+              <div
+                rel="noopener noreferrer"
+                className="opacity-50"
+                
+              >
+                <p className="mt-2"></p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-span-4 md:mt-10 text-sm text-center md:text-start">
+          <div className="text-whiteout/50">
+            this site was inspired by{" "}
+            <Link
+              className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
+              href="https://github.com/philparzer/website-v3"
+            >
+              https://philippparzer.com/
+            </Link>
+            <p>
+              built with &mdash;{" "}
+              <Link
+                className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
+                href="https://nextjs.org"
+                target="_blank"
+              >
+                next.js
+              </Link>
+              {", "}
+              <Link
+                className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
+                href="https://tailwindcss.com"
+                target="_blank"
+              >
+                tailwind
+              </Link>
+              {", "}
+              <Link
+                className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
+                href="https://framer.com/motion"
+                target="_blank"
+              >
+                framer motion
+              </Link>
+              {", "}and{" "}
+              <Link
+                className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
+                href="https://rive.app"
+                target="_blank"
+              >
+                rive
+              </Link>
+            </p>
+          </div>
+          <div className="flex justify-between flex-wrap items-baseline text-center md:text-start">
+            <p className="text-whiteout/50 md:w-auto w-full">
+              if you have questions or inquiries,{" "}
+              <Link
+                href="mailto:michelleavalosb@gmail.com"
+                className="underline decoration-2 text-whiteout/75 hover:text-whiteout/100"
+              >
+                reach out
+              </Link>
+            </p>
+            <p className="text-xs opacity-50 text-center w-full mt-10 md:mt-0 md:w-auto">
+              last update: SPRING2025
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+</file>
+
+<file path="components/scroll-container.tsx">
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import ContentBox from "./content-box";
+import { useDebounce } from "@uidotdev/usehooks";
+import Link from "next/link";
+import useFaviconAnimation from "@/lib/use-favicon-animation";
+import { ExternalLink } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Dynamically import ReadingShelf with no SSR to prevent hydration errors
+const ReadingShelf = dynamic(() => import("./ReadingShelf"), { ssr: false });
+
+interface ScrollContainerProps {}
+
+const WORDS = ["curious", "lost in pages", "grounded", "precise with words"];
+
+const ScrollContainer = ({}: ScrollContainerProps) => {
+  useFaviconAnimation();
+  const [activeContentBoxIndex, setActiveContentBoxIndex] = useState(0);
+  const debouncedActiveContentIndex = useDebounce(activeContentBoxIndex, 300);
+
+  return (
+    <div className="relative w-full md:mb-[200px] max-w-screen flex flex-col items-center">
+      <div className="relative">
+        <div className="sticky z-20 top-[33vh] left-0 pl-4 md:pl-0 translate-x-0 lg:translate-x-[100px] md:translate-x-[130px] max-w-[792px] w-full flex justify-center">
+          <div className="flex gap-1.5 md:gap-4 relative md:-translate-x-[230px] w-full text-[22px] md:text-[32px] font-semibold items-baseline left-0 ">
+            <div className="flex md:gap-4 gap-1.5 items-baseline">
+              Michelle{" "}
+              <span className="opacity-50 text-lg md:text-[22px]">is</span>{" "}
+            </div>
+            <div className="relative leading-normal h-[22px] md:h-[33px]">
+              <div>
+                <div className="absolute h-full flex whitespace-nowrap top-0 left-0 ">
+                  <div>
+                    <AnimatePresence initial={false}>
+                      {WORDS.map((word, i) => {
+                        if (i === activeContentBoxIndex)
+                          return (
+                            <motion.div
+                              className="absolute left-0 top-0  rounded-lg"
+                              key={word + i}
+                              initial={{
+                                x: -20,
+                                y: -12,
+                                rotate: 0,
+                                opacity: 0,
+                                scale: 0.95,
+                              }}
+                              animate={{
+                                x: [-10, 6, 0],
+                                y: [-6, 4, 0],
+                                rotate: 0,
+                                scale: 1,
+                                opacity: [0, 1, 1, 1, 1],
+                                transition: {
+                                  ease: "easeInOut",
+                                  delay: 0.1,
+                                  duration: 0.2,
+                                },
+                              }}
+                              exit={{
+                                x: 20,
+                                y: -20,
+                                rotate: -4,
+                                opacity: 0,
+                                scale: 0.95,
+                                transition: {
+                                  ease: "easeInOut",
+                                  duration: 0.15,
+                                },
+                              }}
+                            >
+                              <div className="absolute origin-center h-full z-0 backdrop-blur-[2px] w-[110%] rounded-full"></div>
+                              <div className="text-[20px] md:text-[30px] relative z-10">
+                                {word}
+                              </div>
+                            </motion.div>
+                          );
+                      })}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <main className="flex min-h-screen flex-col justify-between ">
+          <section className="max-w-[792px] w-full mt-[35vh] relative">
+            <div className="h-full right-0 top-0 absolute w-[12%] bg-gradient-to-l  dark:from-zinc-900 from-whiteout to-transparent z-20" />
+            <ul>
+              <ContentBox
+                setActiveIndex={setActiveContentBoxIndex}
+                activeIndex={debouncedActiveContentIndex}
+                index={0}
+                imageSrc="/images/cybersecurity.jpg"
+                imageAlt="Cybersecurity visualization"
+                keywords={["cybersecurity", "intelligence", "cyber ops"]}
+              >
+                <p className="text-lg leading-normal md:text-[22px] max-w-[420px] dark:text-zinc-100/50 text-blackout/50 font-medium">
+                  {" "}
+                  <span className="dark:text-zinc-100 text-blackout">
+                    Cybersecurity intern at AeroVironment
+                  </span>{" "}
+                  <br />
+                  <span className="dark:text-zinc-100 text-blackout">
+                    Intelligence & Cyber Ops at USC
+                  </span>
+                  <br /><br />
+                  red teaming
+                  <br />
+                  digital forensics
+                  <br />
+                  always learning
+                </p>
+              </ContentBox>
+              <ContentBox
+                setActiveIndex={setActiveContentBoxIndex}
+                activeIndex={debouncedActiveContentIndex}
+                index={1}
+                imageSrc="/images/reading.jpg"
+                imageAlt="Books and reading"
+                keywords={["fiction", "literature", "reading"]}
+              >
+                <div className="text-lg leading-normal md:text-[22px] max-w-[450px] dark:text-zinc-100/50 text-blackout/50 font-medium">
+                  <div className="dark:text-zinc-100 text-blackout mb-4">
+                    fiction, summer reads, cafe de mendel enjoyer
+                  </div>
+                  
+                  {/* Goodreads Reading Shelf */}
+                  <ReadingShelf />
+                </div>
+              </ContentBox>
+              <ContentBox
+                setActiveIndex={setActiveContentBoxIndex}
+                activeIndex={debouncedActiveContentIndex}
+                index={2}
+                imageSrc="/images/yoga.jpg"
+                imageAlt="Yoga and mindfulness"
+                keywords={["yoga", "movement", "mindfulness"]}
+              >
+                <div className="relative">
+                  <p className="text-lg leading-normal md:text-[22px] max-w-[500px] dark:text-zinc-100/50 text-blackout/50 font-medium">
+                    <span className="dark:text-zinc-100 text-blackout">
+                      yoga not just on the mat
+                    </span>{" "}
+                    <br />
+                    but in how she lives
+                    <br /><br />
+                    sunrise stretches
+                    <br />
+                    evening stillness
+                    <br />
+                    vinyasa
+                  </p>
+                </div>
+              </ContentBox>
+              <ContentBox
+                setActiveIndex={setActiveContentBoxIndex}
+                activeIndex={debouncedActiveContentIndex}
+                index={3}
+                imageSrc="/images/japanese.jpg"
+                imageAlt="Japanese culture and language"
+                keywords={["Japanese", "languages", "culture"]}
+              >
+                <p className="text-lg leading-normal md:text-[22px] max-w-[500px] dark:text-zinc-100/50 text-blackout/50 font-medium">
+                  <span className="dark:text-zinc-100 text-blackout">
+                    USC minor in Japanese, Nanzan University: Stella Nanzan
+                  </span>{" "}
+                  <br /><br />
+                  anime, haiku, history
+                  <br />
+                  fluent in Japanese
+                </p>
+              </ContentBox>
+            </ul>
+          </section>
+        </main>
+      </div>
+      <div className="">
+        <div className="bg-gradient-to-t w-full h-40 from-whiteout dark:from-zinc-900 dark:via-zinc-900 via-whiteout to-transparent absolute left-0 bottom-0 z-30" />
+      </div>
+    </div>
+  );
+};
+
+export default ScrollContainer;
+</file>
+
+</files>

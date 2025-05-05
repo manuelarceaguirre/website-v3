@@ -109,56 +109,68 @@ const ReadingShelf = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/goodreads');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/api/goodreads?_=${timestamp}`, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
+        
         if (!response.ok) {
+          console.error(`ReadingShelf: Failed to fetch Goodreads data: ${response.status} ${response.statusText}`);
           throw new Error('Failed to fetch Goodreads data');
         }
-        const goodreadsData = await response.json();
         
-        // If we have no data or very little data, supplement with sample books
+        const goodreadsData: GoodreadsData = await response.json();
+        
+        console.log("ReadingShelf: Received data from API:", JSON.stringify(goodreadsData, null, 2));
+        
+        let usedSampleCurrentlyReading = false;
+        let usedSampleRecentlyRead = false;
+
         if (!goodreadsData.currentlyReading || goodreadsData.currentlyReading.length < 2) {
-          // Use the real book if it exists and add sample books
+          console.log("ReadingShelf: Supplementing currently reading with sample data.");
+          usedSampleCurrentlyReading = true;
           const realBooks = goodreadsData.currentlyReading || [];
           goodreadsData.currentlyReading = [...realBooks, ...sampleBooks.slice(0, Math.min(3, 5 - realBooks.length))];
         }
         
         if (!goodreadsData.recentlyRead || goodreadsData.recentlyRead.length < 3) {
-          // Use the real books if they exist and add sample books
+           console.log("ReadingShelf: Supplementing recently read with sample data.");
+           usedSampleRecentlyRead = true;
           const realBooks = goodreadsData.recentlyRead || [];
           goodreadsData.recentlyRead = [...realBooks, ...sampleFinished.slice(0, Math.min(5, 5 - realBooks.length))];
         }
         
+        console.log("ReadingShelf: Setting final data state (samples used? CR:", usedSampleCurrentlyReading, "RR:", usedSampleRecentlyRead, "):", JSON.stringify(goodreadsData, null, 2));
+
         setData(goodreadsData);
         
         // Assign random tilt directions to books
         const newTiltMap = new Map<string, typeof tiltDirections[number]>();
-        
         [...goodreadsData.currentlyReading, ...goodreadsData.recentlyRead].forEach((book, index) => {
-          // Alternate tilt directions for a more natural bookshelf look
           const tiltPattern = ['left', 'right', 'none', 'right', 'left'];
           newTiltMap.set(book.title, tiltDirections[index % tiltDirections.length]);
         });
-        
         setTiltMap(newTiltMap);
+
       } catch (err) {
-        console.error(err);
+        console.error("ReadingShelf: Error fetching or processing data:", err);
+        setError('Could not load bookshelf data.');
         
-        // When API fails, use sample data instead of showing error
-        const sampleData = {
-          currentlyReading: sampleBooks,
-          recentlyRead: sampleFinished
-        };
-        
+        console.log("ReadingShelf: Using sample data due to error.");
+        const sampleData = { currentlyReading: sampleBooks, recentlyRead: sampleFinished };
         setData(sampleData);
-        
-        // Assign tilt directions
+
+        // Assign tilt directions for sample data
         const newTiltMap = new Map<string, typeof tiltDirections[number]>();
         [...sampleBooks, ...sampleFinished].forEach((book, index) => {
           const tiltPattern = ['left', 'right', 'none', 'right', 'left'];
           newTiltMap.set(book.title, tiltDirections[index % tiltDirections.length]);
         });
-        
         setTiltMap(newTiltMap);
+
       } finally {
         setIsLoading(false);
       }
